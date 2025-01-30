@@ -117,7 +117,7 @@ const port = process.env.PORT || 3000;
 const main = async () => {
     try {
       await db.authenticate();
-      await db.sync({ force: true });
+      await db.sync();
       console.log("Database connected");
       app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
