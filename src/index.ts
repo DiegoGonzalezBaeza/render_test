@@ -18,7 +18,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 
 const app = express();
-const port = process.env.PORT || 3000;
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -111,6 +111,8 @@ app.use("/api/v1/reviews", reviewRoute);
 
 // Middleware para manejar errores - debe estar al final de las rutas
 app.use(httpErrorHandle);
+
+const port = process.env.PORT || 3000;
 
 const main = async () => {
     try {
