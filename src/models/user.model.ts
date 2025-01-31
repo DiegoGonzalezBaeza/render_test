@@ -1,6 +1,4 @@
 import bcrypt from "bcryptjs";
-import { Review } from "./review.model";
-
 import {
   AllowNull,
   Column,
@@ -12,13 +10,12 @@ import {
   PrimaryKey,
   Table,
   Unique,
-  HasMany,
 } from "sequelize-typescript";
 
 interface UserAttributes {
   uid?: string;
   email: string;
-  password:string;
+  password: string;
 }
 
 @Table({
@@ -40,7 +37,4 @@ export class User extends Model<UserAttributes> {
   @AllowNull(false)
   @Column(DataType.STRING)
   declare password: string;
-
-  @HasMany(() => Review)
-  declare reviews: Review[]; // Relación con Review
 }

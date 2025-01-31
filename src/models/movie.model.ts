@@ -5,24 +5,21 @@ import {
   Default,
   Column,
   DataType,
-  HasMany,
   Model,
   PrimaryKey,
   Table,
 } from "sequelize-typescript";
-import { Review } from "./review.model";
 
 export interface MovieAttributes {
   mid?: string;
   title: string;
   release_year: number; 
-  director?: string; // Opcional
-  duration_minutes?: number; // Opcional
-  synopsis?: string; // Opcional
-  poster_url?: string; // Opcional
+  director?: string;
+  duration_minutes?: number;
+  synopsis?: string;
+  poster_url?: string;
 }
 
-// Define los campos opcionales para la creación
 export interface MovieCreationAttributes extends Optional<MovieAttributes, "mid"> {}
 
 @Table({
@@ -58,7 +55,4 @@ export class Movie extends Model<MovieAttributes, MovieCreationAttributes> {
   @AllowNull(true)
   @Column(DataType.STRING)
   declare poster_url?: string;
-
-  @HasMany(() => Review)
-  declare reviews?: Review[]; // Relación con Review
 }

@@ -11,9 +11,9 @@ import {
   PrimaryKey,
   Table,
   UpdatedAt,
-  BelongsTo,
 } from "sequelize-typescript";
 
+// 🔴 Agregamos las importaciones necesarias
 import { User } from "./user.model";
 import { Movie } from "./movie.model";
 
@@ -27,7 +27,6 @@ interface ReviewAttributes {
   updated_at: Date;
 }
 
-// Define los campos opcionales para la creación
 export interface ReviewCreationAttributes extends Optional<ReviewAttributes, "rid" | "created_at" | "updated_at"> {}
 
 @Table({
@@ -38,7 +37,7 @@ export class Review extends Model<ReviewAttributes, ReviewCreationAttributes> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column(DataType.UUID)
-  declare rid: string; // Identificador único de la reseña
+  declare rid: string;
 
   @AllowNull(false)
   @Column({
@@ -48,37 +47,32 @@ export class Review extends Model<ReviewAttributes, ReviewCreationAttributes> {
       max: 5,
     },
   })
-  declare rating: number; // Puntuación de la película (1-5)
+  declare rating: number;
 
   @AllowNull(false)
   @Column(DataType.TEXT)
-  declare review_text: string; // Comentario de la reseña
+  declare review_text: string;
 
   @CreatedAt
   @Default(DataType.NOW)
   @Column(DataType.DATE)
-  declare created_at: Date; // Fecha de creación de la reseña
+  declare created_at: Date;
 
   @UpdatedAt
   @Default(DataType.NOW)
   @Column(DataType.DATE)
-  declare updated_at: Date; // Fecha de actualización de la reseña
+  declare updated_at: Date;
 
+  // 🔴 Volvemos a importar User y Movie pero solo para las claves foráneas
   @ForeignKey(() => User)
   @AllowNull(false)
   @IsUUID(4)
   @Column(DataType.UUID)
-  declare uid: string; // UUID del usuario que realizó la reseña
+  declare uid: string;
 
   @ForeignKey(() => Movie)
   @AllowNull(false)
   @IsUUID(4)
   @Column(DataType.UUID)
-  declare mid: string; // UUID del usuario que realizó la reseña
-
-  @BelongsTo(() => User)
-  declare user: User; // Relación con User
-
-  @BelongsTo(() => Movie)
-  declare movie: Movie; // Relación con Movie
+  declare mid: string;
 }

@@ -8,6 +8,7 @@ import reviewRoute from "./routes/review.route";
 import { httpErrorHandle } from "./middlewares/httpErrorHandle.middleware";
 import { loggerMiddleware } from "./middlewares/logger.middleware";
 import rateLimit from "express-rate-limit";
+import { setupAssociations } from "./models/associations";
 
 import openapiSpecification from "./config/swagger";
 import swaggerUi from "swagger-ui-express";
@@ -118,7 +119,8 @@ const port = process.env.PORT || 3000;
 const main = async () => {
     try {
       await db.authenticate();
-      await db.sync();
+      setupAssociations();
+      await db.sync({ force: true });
       console.log("Database connected");
       app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
