@@ -19,6 +19,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+app.set("trust proxy", 1); // Para que RateLimit considere la IP real detrás de un posible proxy
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
