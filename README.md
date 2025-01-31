@@ -6,9 +6,46 @@ API de Review y Rating de peliculas (IMDb y Rotten Tomatoes)
 
 ESTA ES LA CONTINUACIÓN DEL REPOSITORIO: https://github.com/DiegoGonzalezBaeza/Hito-2-Backend_Node_y_Express
 
+## Activo hasta 01/03/25
+
+https://render-test-rklq.onrender.com
 
 
-RECORDAR: que la aplicación de docker debe estar abierta.
+Render es una plataforma de hosting en la nube que permite desplegar y gestionar aplicaciones web, APIs y servicios backend de manera sencilla y rápida. Está especialmente orientada a desarrolladores y equipos pequeños que desean evitar la complejidad de manejar infraestructuras de servidores. Ofrece una variedad de características, tales como:
+
+Despliegue automático: Puedes conectar tu repositorio de GitHub o GitLab para desplegar tu aplicación automáticamente cada vez que haces un commit.
+
+Escalabilidad: Render se encarga de escalar automáticamente tus aplicaciones dependiendo del tráfico y las necesidades de tu servicio.
+
+Entornos de producción y desarrollo: Puedes configurar entornos separados para desarrollo y producción, lo cual facilita el manejo de la infraestructura de tu app.
+
+Soporte para múltiples lenguajes y frameworks: Render soporta aplicaciones escritas en lenguajes como JavaScript (Node.js), Python, Ruby, Java, Go, PHP, y muchos más.
+
+Bases de datos gestionadas: Ofrece bases de datos gestionadas como PostgreSQL y Redis sin tener que preocuparte por la infraestructura subyacente.
+
+Precios competitivos: Render tiene una capa gratuita con un límite de uso, y opciones de pago según el tamaño y necesidades de tu proyecto.
+
+
+### TEST WEB RENDER
+
+# * Se debe vincular con GitHub, con un repositorio (debe estar creado la carpeta dist/index.js para la producción)
+
+# * Cambiar el modelo, existe problemas de circulación:
+
+Circular dependency: src/models/user.model.ts -> src/models/review.model.ts -> src/models/user.model.ts
+Circular dependency: src/models/review.model.ts -> src/models/movie.model.ts -> src/models/review.model.ts
+
+Se tuvo que crear un archivo exclusivo para las asociaciones (associations.ts) como tambien eliminar en cada modelo las referencias y dependencias entre ellas. (menos en el caso de review.model.ts) 
+
+RECORDAR: el input de los comandos "start y build" y poner manualmente las variables de entorno vitula (DATABASE_URL y JWT_SECRET)
+
+Settings
+
+![image](./img/Settings-render.webp)
+
+Logs
+
+![image](./img/Logs-render.webp)
 
 ### Comandos Docker
 
